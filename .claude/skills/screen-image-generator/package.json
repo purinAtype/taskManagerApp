@@ -1,0 +1,25 @@
+{
+  "name": "screen-image-generator",
+  "version": "1.0.0",
+  "description": "HTMLモックアップからPNG画像を生成するスキル",
+  "main": "generate.js",
+  "scripts": {
+    "generate": "node generate.js",
+    "generate:all": "node generate.js",
+    "generate:retina": "node generate.js --scale 2",
+    "generate:fullpage": "node generate.js --fullpage",
+    "install-browser": "npx playwright install chromium"
+  },
+  "keywords": [
+    "playwright",
+    "screenshot",
+    "mockup",
+    "screen-design"
+  ],
+  "dependencies": {
+    "playwright": "^1.40.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

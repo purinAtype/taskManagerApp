@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>カテゴリー一覧 - Task Manager</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <!-- ヘッダー -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="01_task_list.html">
+                <i class="bi bi-check2-square me-2"></i>Task Manager
+            </a>
+        </div>
+    </nav>
+
+    <!-- メインコンテンツ -->
+    <main class="container py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="h3 mb-0">
+                <i class="bi bi-folder-fill me-2"></i>カテゴリー一覧
+            </h1>
+            <a href="08_category_form.html" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i>新規カテゴリー
+            </a>
+        </div>
+
+        <!-- 成功メッセージ（サンプル） -->
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="bi bi-check-circle me-2"></i>カテゴリーを登録しました
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+
+        <!-- カテゴリー一覧テーブル -->
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col" style="width: 25%;">カテゴリー名</th>
+                                <th scope="col" style="width: 35%;">説明</th>
+                                <th scope="col" style="width: 15%;">カラー</th>
+                                <th scope="col" style="width: 10%;">表示順</th>
+                                <th scope="col" style="width: 15%;">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="fw-medium">仕事</td>
+                                <td>業務に関連するタスク</td>
+                                <td>
+                                    <span class="badge" style="background-color: #0d6efd;">
+                                        <i class="bi bi-circle-fill"></i> #0d6efd
+                                    </span>
+                                </td>
+                                <td>10</td>
+                                <td>
+                                    <a href="09_category_edit.html" class="btn btn-sm btn-outline-primary" title="編集">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-category-id="1" data-category-name="仕事" title="削除">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">プライベート</td>
+                                <td>個人的なタスク</td>
+                                <td>
+                                    <span class="badge" style="background-color: #198754;">
+                                        <i class="bi bi-circle-fill"></i> #198754
+                                    </span>
+                                </td>
+                                <td>20</td>
+                                <td>
+                                    <a href="09_category_edit.html" class="btn btn-sm btn-outline-primary" title="編集">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-category-id="2" data-category-name="プライベート" title="削除">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">学習</td>
+                                <td>スキルアップや勉強に関するタスク</td>
+                                <td>
+                                    <span class="badge" style="background-color: #ffc107; color: #212529;">
+                                        <i class="bi bi-circle-fill"></i> #ffc107
+                                    </span>
+                                </td>
+                                <td>30</td>
+                                <td>
+                                    <a href="09_category_edit.html" class="btn btn-sm btn-outline-primary" title="編集">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-category-id="3" data-category-name="学習" title="削除">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="fw-medium">その他</td>
+                                <td>-</td>
+                                <td>
+                                    <span class="badge" style="background-color: #6c757d;">
+                                        <i class="bi bi-circle-fill"></i> #6c757d
+                                    </span>
+                                </td>
+                                <td>99</td>
+                                <td>
+                                    <a href="09_category_edit.html" class="btn btn-sm btn-outline-primary" title="編集">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-sm btn-outline-danger"
+                                            data-bs-toggle="modal" data-bs-target="#deleteModal"
+                                            data-category-id="4" data-category-name="その他" title="削除">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer bg-white">
+                <small class="text-muted">全 4 件</small>
+            </div>
+        </div>
+    </main>
+
+    <!-- 削除確認モーダル -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">
+                        <i class="bi bi-exclamation-triangle text-warning me-2"></i>カテゴリーの削除
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="mb-2">このカテゴリーを削除してもよろしいですか?</p>
+                    <p class="text-muted small mb-0">
+                        <i class="bi bi-info-circle me-1"></i>削除後は元に戻せません。このカテゴリーに紐付いているタスクは「カテゴリーなし」になります。
+                    </p>
+                    <div class="alert alert-warning mt-3 mb-0" role="alert">
+                        <strong id="categoryNameDisplay">カテゴリー名</strong>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-lg me-1"></i>キャンセル
+                    </button>
+                    <form id="deleteForm" method="POST" style="display: inline;">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-danger">
+                            <i class="bi bi-trash me-1"></i>削除
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- フッター -->
+    <footer class="bg-white border-top py-3 mt-auto">
+        <div class="container text-center text-muted">
+            <small>&copy; 2025 Task Manager Application - Multi-Agent Demo</small>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // 削除モーダルにカテゴリー情報を設定
+        const deleteModal = document.getElementById('deleteModal');
+        deleteModal.addEventListener('show.bs.modal', event => {
+            const button = event.relatedTarget;
+            const categoryId = button.getAttribute('data-category-id');
+            const categoryName = button.getAttribute('data-category-name');
+
+            // モーダルにカテゴリー名を表示
+            document.getElementById('categoryNameDisplay').textContent = categoryName;
+
+            // 削除フォームのアクションURLを設定
+            document.getElementById('deleteForm').action = `/categories/${categoryId}`;
+        });
+    </script>
+</body>
+</html>

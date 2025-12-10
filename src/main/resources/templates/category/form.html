@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('新規カテゴリー登録 - Task Manager')}"></head>
+<body class="bg-light">
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container py-4">
+    <!-- パンくずリスト -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/categories}">カテゴリー一覧</a></li>
+            <li class="breadcrumb-item active" aria-current="page">新規登録</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h1 class="h5 mb-0">
+                        <i class="bi bi-plus-circle me-2"></i>新規カテゴリー登録
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/categories}" th:object="${categoryForm}" method="post">
+                        <!-- カテゴリー名 -->
+                        <div class="mb-3">
+                            <label for="name" class="form-label">
+                                カテゴリー名 <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control"
+                                   th:classappend="${#fields.hasErrors('name')} ? 'is-invalid'"
+                                   id="name" th:field="*{name}" maxlength="50"
+                                   placeholder="カテゴリー名を入力">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                            <div class="form-text">50文字以内で入力してください</div>
+                        </div>
+
+                        <!-- 説明 -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">説明</label>
+                            <textarea class="form-control"
+                                      th:classappend="${#fields.hasErrors('description')} ? 'is-invalid'"
+                                      id="description" th:field="*{description}" rows="3" maxlength="200"
+                                      placeholder="カテゴリーの説明を入力"></textarea>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                            <div class="form-text">200文字以内で入力してください</div>
+                        </div>
+
+                        <div class="row">
+                            <!-- カラー -->
+                            <div class="col-md-6 mb-3">
+                                <label for="color" class="form-label">カラー</label>
+                                <input type="color" class="form-control form-control-color"
+                                       th:classappend="${#fields.hasErrors('color')} ? 'is-invalid'"
+                                       id="color" th:field="*{color}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('color')}" th:errors="*{color}"></div>
+                                <div class="form-text">カテゴリーを識別する色を選択してください</div>
+                            </div>
+
+                            <!-- 表示順 -->
+                            <div class="col-md-6 mb-3">
+                                <label for="displayOrder" class="form-label">表示順</label>
+                                <input type="number" class="form-control"
+                                       th:classappend="${#fields.hasErrors('displayOrder')} ? 'is-invalid'"
+                                       id="displayOrder" th:field="*{displayOrder}" min="0" step="1">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('displayOrder')}" th:errors="*{displayOrder}"></div>
+                                <div class="form-text">小さい数値ほど上位に表示されます</div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a th:href="@{/categories}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-lg me-1"></i>キャンセル
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg me-1"></i>登録
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+</body>
+</html>

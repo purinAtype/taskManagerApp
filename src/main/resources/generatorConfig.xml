@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <!--
+      MyBatis Generator設定ファイル
+
+      実行方法:
+      1. H2データベースファイルを作成（schema.sqlを適用）
+      2. mvn mybatis-generator:generate を実行
+
+      注意:
+      - インメモリDBではなくファイルベースのH2を使用
+      - 生成されたファイルは common/ ディレクトリに出力
+    -->
+
+    <context id="TaskManagerContext" targetRuntime="MyBatis3">
+
+        <!-- コメント生成の設定 -->
+        <commentGenerator>
+            <property name="suppressAllComments" value="false"/>
+            <property name="suppressDate" value="true"/>
+            <property name="addRemarkComments" value="true"/>
+        </commentGenerator>
+
+        <!-- H2データベース接続設定（ファイルベース） -->
+        <jdbcConnection
+            driverClass="org.h2.Driver"
+            connectionURL="jdbc:h2:file:./data/taskdb;AUTO_SERVER=TRUE"
+            userId="sa"
+            password="">
+        </jdbcConnection>
+
+        <!-- Java型リゾルバ設定 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <!-- Entityクラス生成設定 -->
+        <javaModelGenerator
+            targetPackage="com.example.taskmanager.common.entity"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- Mapper XML生成設定 -->
+        <sqlMapGenerator
+            targetPackage="mapper"
+            targetProject="src/main/resources">
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- Mapperインターフェース生成設定 -->
+        <javaClientGenerator
+            type="XMLMAPPER"
+            targetPackage="com.example.taskmanager.common.mapper"
+            targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- task_categoriesテーブル設定 -->
+        <table tableName="task_categories" domainObjectName="TaskCategory">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+        </table>
+
+        <!-- tasksテーブル設定 -->
+        <table tableName="tasks" domainObjectName="Task">
+            <property name="useActualColumnNames" value="false"/>
+            <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
+
+            <!-- カラムのJava型オーバーライド -->
+            <columnOverride column="status" javaType="java.lang.String"/>
+            <columnOverride column="priority" javaType="java.lang.String"/>
+        </table>
+
+    </context>
+</generatorConfiguration>

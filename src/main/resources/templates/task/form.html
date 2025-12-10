@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('新規タスク登録 - Task Manager')}"></head>
+<body class="bg-light">
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main class="container py-4">
+    <!-- パンくずリスト -->
+    <nav aria-label="breadcrumb" class="mb-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/tasks}">タスク一覧</a></li>
+            <li class="breadcrumb-item active" aria-current="page">新規登録</li>
+        </ol>
+    </nav>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h1 class="h5 mb-0">
+                        <i class="bi bi-plus-circle me-2"></i>新規タスク登録
+                    </h1>
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/tasks}" th:object="${taskForm}" method="post">
+                        <!-- タイトル -->
+                        <div class="mb-3">
+                            <label for="title" class="form-label">
+                                タイトル <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control"
+                                   th:classappend="${#fields.hasErrors('title')} ? 'is-invalid'"
+                                   id="title" th:field="*{title}" maxlength="100"
+                                   placeholder="タスクのタイトルを入力">
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+                            <div class="form-text">100文字以内で入力してください</div>
+                        </div>
+
+                        <!-- 説明 -->
+                        <div class="mb-3">
+                            <label for="description" class="form-label">説明</label>
+                            <textarea class="form-control"
+                                      th:classappend="${#fields.hasErrors('description')} ? 'is-invalid'"
+                                      id="description" th:field="*{description}" rows="4" maxlength="1000"
+                                      placeholder="タスクの詳細を入力"></textarea>
+                            <div class="invalid-feedback" th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+                            <div class="form-text">1000文字以内で入力してください</div>
+                        </div>
+
+                        <div class="row">
+                            <!-- ステータス -->
+                            <div class="col-md-6 mb-3">
+                                <label for="status" class="form-label">
+                                    ステータス <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select"
+                                        th:classappend="${#fields.hasErrors('status')} ? 'is-invalid'"
+                                        id="status" th:field="*{status}">
+                                    <option value="">選択してください</option>
+                                    <option th:each="s : ${statuses}" th:value="${s}" th:text="${s.displayName}"></option>
+                                </select>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('status')}" th:errors="*{status}"></div>
+                            </div>
+
+                            <!-- 優先度 -->
+                            <div class="col-md-6 mb-3">
+                                <label for="priority" class="form-label">
+                                    優先度 <span class="text-danger">*</span>
+                                </label>
+                                <select class="form-select"
+                                        th:classappend="${#fields.hasErrors('priority')} ? 'is-invalid'"
+                                        id="priority" th:field="*{priority}">
+                                    <option value="">選択してください</option>
+                                    <option th:each="p : ${priorities}" th:value="${p}" th:text="${p.displayName}"></option>
+                                </select>
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('priority')}" th:errors="*{priority}"></div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- カテゴリー -->
+                            <div class="col-md-6 mb-3">
+                                <label for="categoryId" class="form-label">カテゴリー</label>
+                                <select class="form-select" id="categoryId" th:field="*{categoryId}">
+                                    <option value="">選択してください</option>
+                                    <option th:each="c : ${categories}" th:value="${c.id}" th:text="${c.name}"></option>
+                                </select>
+                            </div>
+
+                            <!-- 期限 -->
+                            <div class="col-md-6 mb-3">
+                                <label for="dueDate" class="form-label">期限</label>
+                                <input type="date" class="form-control"
+                                       th:classappend="${#fields.hasErrors('dueDate')} ? 'is-invalid'"
+                                       id="dueDate" th:field="*{dueDate}">
+                                <div class="invalid-feedback" th:if="${#fields.hasErrors('dueDate')}" th:errors="*{dueDate}"></div>
+                            </div>
+                        </div>
+
+                        <!-- ボタン -->
+                        <div class="d-flex gap-2">
+                            <a th:href="@{/tasks}" class="btn btn-outline-secondary">
+                                <i class="bi bi-x-lg me-1"></i>キャンセル
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-check-lg me-1"></i>登録
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<th:block th:replace="~{fragments/layout :: footer}"></th:block>
+</body>
+</html>
