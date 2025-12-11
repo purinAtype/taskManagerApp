@@ -1,10 +1,7 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cmd /c mvn clean compile)",
-      "Bash(cmd /c \"C:\\Users\\ka2mi\\OneDrive\\develop\\source\\app\\taskManagerApp\\mvnw.cmd clean test -f C:\\Users\\ka2mi\\OneDrive\\develop\\source\\app\\taskManagerApp\\pom.xml -q\")",
-      "Bash(cmd /c \"type C:\\Users\\ka2mi\\OneDrive\\develop\\source\\app\\taskManagerApp\\target\\surefire-reports\\*.txt | findstr /C:\"\"Tests run:\"\"\")",
-      "Bash(mvn clean compile:*)"
+
     ]
   }
 }

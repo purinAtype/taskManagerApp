@@ -5,7 +5,11 @@
       "Edit",
       "Skill(screen-image-generator)",
       "Skill(table-definition-generator)",
-      "Skill(er-diagram-generator)"
+      "Skill(er-diagram-generator)",
+      "Bash(cmd:*)",
+      "Bash(mvn:*)",
+      "Bash(mvnw.cmd:*)",
+      "Bash(.\\mvnw.cmd:*)"
     ]
   }
 }
