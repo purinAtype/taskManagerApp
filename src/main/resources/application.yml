@@ -25,6 +25,12 @@ spring:
     suffix: .html
     encoding: UTF-8
 
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
+
   messages:
     basename: messages
     encoding: UTF-8

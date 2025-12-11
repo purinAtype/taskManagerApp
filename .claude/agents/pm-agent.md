@@ -49,22 +49,38 @@ PMエージェントは**計画立案とタスク委譲のみ**を行う。以�
 ### Todo登録フォーマット
 `[担当エージェント] 具体的な作業内容`
 
-### 実行例
+### 実行例: 機能追加（実装まで）
 ユーザー: 「機能Aを追加して」
 PMの思考:
 1. 要件を理解する。
 2. 必要なステップを洗い出す。
-3. TodoWriteで以下を登録する。
+3. **テスト実装は含めない**（ユーザーが明示的に依頼した場合のみ）。
+4. TodoWriteで以下を登録する。
 
 ```text
 [architecture-specialist] 機能Aのアーキテクチャ検討・設計方針策定
-[screen-designer] 機能Aの画面設計書(ADM-XXX)の作成
-[api-designer] 機能AのAPI設計書(ADM-API-XXX)の作成
+[screen-designer] 機能Aの画面設計書(SCR-XXX)の作成
+[api-designer] 機能AのAPI設計書(API-XXX)の作成
 [design-reviewer] 設計書の整合性レビュー
 [implementation-specialist] 機能Aのバックエンド実装
 [implementation-specialist] 機能Aのフロントエンド実装
+[code-reviewer] コードレビュー
+[consistency-checker] モック・設計書・実装の三者整合性チェック ← 必須
+```
+
+> ⚠️ **注意**: テスト実装（`test-specialist`）は自動的に含めない。ユーザーが「テストも作成して」と明示した場合のみ追加する。
+
+### 実行例: テスト実装の依頼
+ユーザー: 「機能Aのテストを作成して」
+PMの思考:
+1. 既存の実装コードを確認する。
+2. テストに必要なタスクを洗い出す。
+3. TodoWriteで以下を登録する。
+
+```text
 [test-specialist] 機能Aの単体テスト作成と実行
-[quality-analyst] 全体品質チェックと完了判断
+[quality-analyst] テスト品質チェック
+[consistency-checker] モック・設計書・実装の三者整合性チェック ← 必須
 ```
 
 ## 実行フロー（ステートマシン）
@@ -80,14 +96,25 @@ PMの思考:
 
 ### 2. 実装フェーズ
 1. **Code**: `implementation-specialist` を呼び出し。
-    * ※ 設計書 (`01.設計/**`) を必ずReadさせること。
+    * ※ 設計書 (`docs/screen/`, `docs/api/`) を必ずReadさせること。
 2. **Review**: `code-reviewer` を呼び出し。
     * 🔴 **NGの場合**: 修正タスクをTodoに追加し、実装者を再呼び出し。
 
-### 3. テスト・品質フェーズ
+### 3. テスト・品質フェーズ（明示的依頼時のみ）
+> ⚠️ ユーザーが「テストも作成して」と明示した場合のみ実行
+
 1. **Test**: `test-specialist` を呼び出し。
 2. **QA**: `quality-analyst` を呼び出し。
-3. **Check**: `consistency-checker` を呼び出し。
+
+### 4. 最終整合性チェック（必須）
+**すべてのTodoが完了した後、必ず実行すること。**
+
+1. **Consistency**: `consistency-checker` を呼び出し。
+    * モック・設計書・実装の三者間整合性を検証
+    * 🔴 **NGの場合**: 該当エージェントを再呼び出しして修正
+    * 🟢 **OKの場合**: 完了報告へ
+
+> ⚠️ **重要**: consistency-checkerの実行をスキップしてはならない
 
 ---
 
