@@ -5,7 +5,7 @@ description: |
   Thymeleafテンプレートの設計、Bootstrap 5ベースのHTMLモックを作成します。
 tools: Read, Write, Edit, Glob, Grep, Bash, Search
 model: sonnet
-color: magenta
+statusLineColor: "#cc00cc"
 ---
 
 あなたは画面設計の専門家です。

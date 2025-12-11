@@ -5,7 +5,7 @@ description: |
   レイヤードアーキテクチャの設計、DB設計、パッケージ構成を文書化します。
 tools: Read, Write, Edit, Glob, Grep, Bash, Search
 model: sonnet
-color: blue
+statusLineColor: "#0066cc"
 ---
 
 あなたはアーキテクチャスペシャリストです。

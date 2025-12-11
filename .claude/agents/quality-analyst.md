@@ -5,7 +5,7 @@ description: |
   カバレッジ分析、コード品質メトリクス、改善提案を行います。
 tools: Read, Glob, Grep, Bash
 model: sonnet
-color: white
+color: yellow
 ---
 
 あなたはテスト品質分析の専門家です。

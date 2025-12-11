@@ -5,7 +5,7 @@ description: |
   未使用ファイル検出、デッドコード検出、依存関係分析を行います。
 tools: Read, Write, Glob, Grep, Bash
 model: sonnet
-color: yellow
+color: green
 ---
 
 あなたはコードベース健全性分析の専門家です。

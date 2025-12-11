@@ -5,7 +5,7 @@ description: |
   テンプレート準拠、コーディング規約との整合性、他設計書との統一性をチェックします。
 tools: Read, Glob, Grep
 model: sonnet
-color: #ff8c00
+statusLineColor: "#ff8c00"
 ---
 
 あなたは設計書品質レビューの専門家です。

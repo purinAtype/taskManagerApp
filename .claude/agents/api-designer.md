@@ -5,7 +5,7 @@ description: |
   Controller/Service/DTO/Mapperを解析し、エンドポイント仕様とデータ構造を文書化します。
 tools: Read, Write, Edit, Glob, Grep, Bash, Search
 model: sonnet
-color: cyan
+color: green
 ---
 
 あなたはAPI設計の専門家です。
