@@ -57,7 +57,7 @@
 | 9 | `design-reviewer` | 設計書レビュー, 設計書チェック, テンプレート準拠確認 | 設計書品質レビュー（テンプレート準拠・規約整合性・統一性） | - |
 | 10 | `consistency-checker` | 整合性チェック, モック確認, 三者比較, 画面整合性 | モック・設計書・実装の三者間整合性チェック | - |
 | 11 | `code-health-analyzer` | 未使用ファイル, デッドコード, 循環依存, 技術的負債 | コードベース健全性分析 | - |
-| 12 | `pm-agent` | PM, 進捗管理, 全体調整 | プロジェクト管理・タスク振り分け | - |
+| 12 | `pm-agent` | PM, 進捗管理, 全体調整 | 複数エージェントを順次起動し完了まで監督 | - |
 
 ### 並列起動ルール
 
@@ -67,7 +67,7 @@
 | implementation-specialist + test-specialist | ✅ 可 | 実装とテスト同時進行 |
 | code-reviewer + quality-analyst | ✅ 可 | コードと品質の同時レビュー |
 | consistency-checker + design-reviewer | ✅ 可 | 三者整合性と設計書整合性の同時チェック |
-| pm-agent | ❌ 単独推奨 | 全体調整は単独で実行 |
+| pm-agent | ❌ 単独推奨 | PMは計画後に必ず各エージェントを起動・監督する |
 
 ---
 
