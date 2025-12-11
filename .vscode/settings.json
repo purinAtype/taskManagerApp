@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "spring-boot.ls.problem.boot2.JAVA_CONSTRUCTOR_PARAMETER_INJECTION": "WARNING",
+    "java.autobuild.enabled": true
+}
